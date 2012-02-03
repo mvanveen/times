@@ -118,13 +118,13 @@ class TestTimes(TestCase):
       )
 
 
-    def test_convert_non_numeric(self):
+    def test_convert_from_non_numeric(self):
         """from_unix refuses to accept non-numeric input"""
         with self.assertRaises(ValueError):
             times.from_unix('lol')
 
 
-    def test_convert_non_numeric(self):
+    def test_convert_to_non_numeric(self):
         """to_unix refuses to accept non-numeric input"""
         with self.assertRaises(ValueError):
             times.to_unix('lol')
