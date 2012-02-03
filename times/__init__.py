@@ -69,19 +69,23 @@ def format(dt, timezone, fmt=None):
 
 
 def to_unix(dt):
-  """Converts a datetime object to unixtime"""
-  if not isinstance(dt, datetime.datetime):
-      raise ValueError('First argument to to_unix should be a datetime object')
+    """Converts a datetime object to unixtime"""
+    if not isinstance(dt, datetime.datetime):
+        raise ValueError(
+          'First argument to to_unix should be a datetime object'
+        )
 
-  return time.mktime(dt.timetuple())
+    return time.mktime(dt.timetuple())
 
 
 def from_unix(ut):
-  """Converts a unix time to a datetime object"""
-  if not isinstance(ut, (int, float)):
-      return ValueError('First agument to from_unix should be an int or float')
+    """Converts a unix time to a datetime object"""
+    if not isinstance(ut, (int, float)):
+        raise ValueError(
+          'First agument to from_unix should be an int or float'
+        )
 
-  return datetime.datetime.fromtimestamp(float(ut))
+    return datetime.datetime.fromtimestamp(float(ut))
 
 now.__doc__ = datetime.datetime.utcnow.__doc__
 from_universal.__doc__ = to_local.__doc__
