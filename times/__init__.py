@@ -1,5 +1,5 @@
 import datetime
-import time
+import calendar
 
 import pytz
 
@@ -75,17 +75,18 @@ def to_unix(dt):
           'First argument to to_unix should be a datetime object'
         )
 
-    return time.mktime(dt.timetuple())
+    return calendar.timegm(dt.utctimetuple())
 
 
 def from_unix(ut):
-    """Converts a unix time to a datetime object"""
+    """Converts a UNIX timestamp, as returned by `time.time()`, to universal
+    time.  Assumes the input is in UTC, as `time.time()` does.
+    """
     if not isinstance(ut, (int, float)):
-        raise ValueError(
-          'First agument to from_unix should be an int or float'
-        )
+        raise ValueError('First agument to from_unix should be an int or float')
 
-    return datetime.datetime.fromtimestamp(float(ut))
+    return datetime.datetime.utcfromtimestamp(float(ut))
+
 
 now.__doc__ = datetime.datetime.utcnow.__doc__
 from_universal.__doc__ = to_local.__doc__
